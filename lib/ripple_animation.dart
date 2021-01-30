@@ -2,8 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
+/// You can use whatever widget as a [child], when you don't need to provide any
+/// [child], just provide an empty Container().
+/// [delay] is using a [Timer] for delaying the animation, it's zero by default.
+/// You can set [repeat] to true for making a paulsing effect.
 class RippleAnimation extends StatefulWidget {
   final Widget child;
   final Duration delay;
@@ -39,6 +42,7 @@ class _RippleAnimationState extends State<RippleAnimation>
       vsync: this,
     );
 
+    // repeating or just forwarding the animation once.
     Timer(widget.delay, () {
       widget.repeat ? _controller?.repeat() : _controller?.forward();
     });
@@ -58,6 +62,7 @@ class _RippleAnimationState extends State<RippleAnimation>
       child: widget.child,
     );
   }
+
   @override
   void dispose() {
     _controller.dispose();
@@ -65,13 +70,14 @@ class _RippleAnimationState extends State<RippleAnimation>
   }
 }
 
+// Creating a Circular painter for clipping the rects and creating circle shapes
 class CirclePainter extends CustomPainter {
   CirclePainter(
-      this._animation, {
-        this.minRadius,
-        this.wavesCount,
-        @required this.color,
-      }) : super(repaint: _animation);
+    this._animation, {
+    this.minRadius,
+    this.wavesCount,
+    @required this.color,
+  }) : super(repaint: _animation);
   final Color color;
   final double minRadius;
   final wavesCount;
@@ -85,6 +91,7 @@ class CirclePainter extends CustomPainter {
     }
   }
 
+  // animating the opacity according to min radius and waves count.
   void circle(Canvas canvas, Rect rect, double minRadius, int wave,
       double value, int length) {
     Color _color;
