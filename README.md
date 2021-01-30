@@ -1,4 +1,4 @@
-# ripple_effect
+# ripple_animation
 
 Simple and highly customizable ripple animation for any flutter app!
 

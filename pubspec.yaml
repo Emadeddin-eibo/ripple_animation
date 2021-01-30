@@ -1,7 +1,7 @@
 name: ripple_animation
 description: Simple and highly customizable ripple animation for any flutter app!
 version: 0.0.1
-author:
+author: https://github.com/Emadeddin-eibo/ripple_animation
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
