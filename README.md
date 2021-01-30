@@ -8,10 +8,10 @@ Simple and highly customizable ripple animation for any flutter app!
 </div>
 
 ## Getting Started
-Easy to use, just place the RippleEffect widget whereever you want.
+Easy to use, just place the RippleAnimation widget whereever you want.
 
 ```dart
-RippleEffect(
+RippleAnimation(
   repeat: false,
   color: Colors.blue,
   minRadius: 100,
@@ -20,4 +20,4 @@ RippleEffect(
 ),
 ```
 ## More
-See example folder to see more about RippleEffect usage.
+See example folder to see more about RippleAnimation usage.
