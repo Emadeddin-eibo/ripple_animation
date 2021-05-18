@@ -15,7 +15,7 @@ class TempScreen extends StatefulWidget {
 }
 
 class _TempScreenState extends State<TempScreen> {
-  Key _key;
+  Key? _key;
 
   @override
   Widget build(BuildContext context) {
