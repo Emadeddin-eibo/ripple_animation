@@ -33,7 +33,8 @@ class RippleAnimation extends StatefulWidget {
 
 class _RippleAnimationState extends State<RippleAnimation>
     with TickerProviderStateMixin {
-  late AnimationController _controller;
+  late final AnimationController _controller;
+  late final Timer _timer;
 
   @override
   void initState() {
@@ -43,7 +44,7 @@ class _RippleAnimationState extends State<RippleAnimation>
     );
 
     // repeating or just forwarding the animation once.
-    Timer(widget.delay, () {
+    _timer = Timer(widget.delay, () {
       widget.repeat ? _controller.repeat() : _controller.forward();
     });
 
@@ -66,6 +67,7 @@ class _RippleAnimationState extends State<RippleAnimation>
   @override
   void dispose() {
     _controller.dispose();
+    _timer.cancel();
     super.dispose();
   }
 }
