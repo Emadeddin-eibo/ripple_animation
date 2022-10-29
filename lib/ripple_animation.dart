@@ -16,16 +16,27 @@ class RippleAnimation extends StatefulWidget {
   final Duration duration;
   final bool repeat;
 
-  const RippleAnimation({
-    Key key,
-    @required this.child,
-    @required this.color,
-    this.delay = const Duration(milliseconds: 0),
-    this.repeat = false,
-    this.minRadius = 60,
-    this.ripplesCount = 5,
-    this.duration = const Duration(milliseconds: 2300),
-  }) : super(key: key);
+  const RippleAnimation(
+      {Key? key,
+      required this.child,
+      this.delay = const Duration(milliseconds: 0),
+      this.minRadius = 60,
+      required this.color,
+      this.ripplesCount = 5,
+      this.duration = const Duration(milliseconds: 2300),
+      this.repeat = false})
+      : super(key: key);
+
+  // const RippleAnimation({
+  //   Key key,
+  //   required this.child,
+  //   required this.color,
+  //   this.delay = const Duration(milliseconds: 0),
+  //   this.repeat = false,
+  //   this.minRadius = 60,
+  //   this.ripplesCount = 5,
+  //   this.duration = const Duration(milliseconds: 2300),
+  // }) : super(key: key);
 
   @override
   _RippleAnimationState createState() => _RippleAnimationState();
@@ -33,7 +44,7 @@ class RippleAnimation extends StatefulWidget {
 
 class _RippleAnimationState extends State<RippleAnimation>
     with TickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
 
   @override
   void initState() {
@@ -44,7 +55,7 @@ class _RippleAnimationState extends State<RippleAnimation>
 
     // repeating or just forwarding the animation once.
     Timer(widget.delay, () {
-      widget.repeat ? _controller?.repeat() : _controller?.forward();
+      widget.repeat ? _controller.repeat() : _controller.forward();
     });
 
     super.initState();
@@ -55,7 +66,7 @@ class _RippleAnimationState extends State<RippleAnimation>
     return CustomPaint(
       painter: CirclePainter(
         _controller,
-        color: widget.color ?? Colors.black,
+        color: widget.color,
         minRadius: widget.minRadius,
         wavesCount: widget.ripplesCount + 2,
       ),
@@ -74,9 +85,9 @@ class _RippleAnimationState extends State<RippleAnimation>
 class CirclePainter extends CustomPainter {
   CirclePainter(
     this._animation, {
-    this.minRadius,
+    required this.minRadius,
     this.wavesCount,
-    @required this.color,
+    required this.color,
   }) : super(repaint: _animation);
   final Color color;
   final double minRadius;
